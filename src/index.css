@@ -118,3 +118,16 @@ tbody tr:nth-child(odd) {
   width: 80vw;
   table-layout: fixed;
 }
+
+.profile-card{
+ background-color: black;
+ border-radius: 5%;
+ text-align: center;
+ 
+}
+
+.profile-img{
+  border-radius: 10px 10px 0px 0px;
+  width: 30vh;
+}
+
