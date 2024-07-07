@@ -8,8 +8,15 @@ const ProfileCard = ({candidate}: CandidateProps) =>{
 console.log("candidate:", candidate) 
 
 const hasValue = (label: string, value: string | null ) => {
-    return  value ? <p>{label} : {value}</p> : null;
-}
+       if (value) {
+            if (label === "Email:") {
+                return <p>{label} <a href={`mailto:${value}`}>{value}</a></p>;
+            } else {
+                return <p>{label} {value}</p>;
+            }
+        }
+        return null;
+    }
 
 return (
 <div className="profile-card">

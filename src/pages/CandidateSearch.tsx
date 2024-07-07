@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import { searchGithub, searchGithubUser } from '../api/API';
 import Candidate from '../interfaces/Candidate.interface';
 import ProfileCard from "../components/ProfileCard"
+import Buttons from '../components/AcceptButton';
+import AcceptButton from '../components/AcceptButton';
+import RejectButton from '../components/RejectButton';
 
 const CandidateSearch = () => {
   const [ results, setResults] = useState<Candidate | null>(null);
@@ -43,16 +46,20 @@ const CandidateSearch = () => {
   }, [])
 
   return (
-    <>
-      <h1>CandidateSearch</h1>
+    <div className='card-container'>
+      <h1>Candidate Search</h1>
       { results ? (
-    
+          <>
           <ProfileCard candidate={results}/>
-     
+          <div className='btn-container'>
+          <RejectButton />
+          <AcceptButton />
+          </div>
+          </>
       ):(
         <p>No candidates to display</p>
       )}
-   </>
+   </div>
   )
 
 };
