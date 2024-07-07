@@ -13,19 +13,17 @@ const CandidateSearch = () => {
   const searchAllUsers = async () => {
     try{
       const users: Candidate[]= await searchGithub()
-      console.log("users:", users)
+      // console.log("users:", users)
 
       if(users.length > 0 ){
         const randomUser = users[Math.floor(Math.random() * users.length)]
-        console.log("random user selection:", randomUser)
+        // console.log("random user selection:", randomUser)
 
         const userDetail = await searchGithubUser(randomUser.login)
-        console.log("user detail", userDetail)
+        // console.log("user detail", userDetail)
 
         setResults(userDetail)
       }
-
-
     } catch(error){
       console.log("error getting results", error)
     }
@@ -38,6 +36,28 @@ const CandidateSearch = () => {
     } catch(error) {
       console.log("error getting results", error)
     }
+  }
+
+  const saveCandidate =  async () => {
+    if(results) {
+      const candidates= localStorage.getItem("saved-candidates")
+
+      let savedCandidates = [];
+
+      if(candidates) {
+        savedCandidates = JSON.parse(candidates)
+      }
+
+      savedCandidates.push(results)
+
+      localStorage.setItem("saved-candidates", JSON.stringify(savedCandidates))
+
+      console.log("candidates in local storage", candidates)
+      console.log("saved candidate:", results)
+
+ 
+    }
+
   }
 
   useEffect (() => {
@@ -53,7 +73,7 @@ const CandidateSearch = () => {
           <ProfileCard candidate={results}/>
           <div className='btn-container'>
           <RejectButton />
-          <AcceptButton />
+          <AcceptButton onClick={saveCandidate} />
           </div>
           </>
       ):(

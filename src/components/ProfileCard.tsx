@@ -5,7 +5,7 @@ type CandidateProps = {
 }
 
 const ProfileCard = ({candidate}: CandidateProps) =>{
-console.log("candidate:", candidate) 
+// console.log("candidate:", candidate) 
 
 const hasValue = (label: string, value: string | null ) => {
        if (value) {
