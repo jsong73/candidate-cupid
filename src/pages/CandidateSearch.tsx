@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { searchGithub, searchGithubUser } from '../api/API';
 import Candidate from '../interfaces/Candidate.interface';
 import ProfileCard from "../components/ProfileCard"
-import Buttons from '../components/AcceptButton';
 import AcceptButton from '../components/AcceptButton';
 import RejectButton from '../components/RejectButton';
 
@@ -52,10 +51,11 @@ const CandidateSearch = () => {
 
       localStorage.setItem("saved-candidates", JSON.stringify(savedCandidates))
 
+      window.location.reload();
+
       console.log("candidates in local storage", candidates)
       console.log("saved candidate:", results)
 
- 
     }
 
   }
