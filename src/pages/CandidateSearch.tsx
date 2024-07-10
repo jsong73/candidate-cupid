@@ -62,7 +62,7 @@ const CandidateSearch = () => {
 
   useEffect (() => {
     searchAllUsers();
-
+    // searchOneUser(user);
   }, [])
 
   return (

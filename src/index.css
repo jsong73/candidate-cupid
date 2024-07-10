@@ -166,5 +166,14 @@ tbody tr:nth-child(odd) {
   width: 35vh;
 }
 
+.saved-avatar{
+  border-radius: 20%;
+}
 
+.column{
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  padding: 20%;
+}
 

@@ -1,6 +1,9 @@
-const SavedCandidatesList = () => {
+import React from "react";
+import Candidate from "../interfaces/Candidate.interface"
 
-const potentialCandidates = JSON.parse(localStorage.getItem("saved-candidates") || "[]");
+const SavedCandidatesList: React.FC = () => {
+
+const potentialCandidates:Candidate[] = JSON.parse(localStorage.getItem("saved-candidates") || "[]");
 
 console.log("potential candidates", potentialCandidates)
 
@@ -19,7 +22,14 @@ console.log("potential candidates", potentialCandidates)
           </tr>
         </thead>
         <tbody>
+        {potentialCandidates.map((candidate) => (
+          <tr key={candidate.id}>
+            <td className="column"> 
+              <img src={candidate.avatar_url} alt="avatar" width="50px" className="saved-avatar"/>
+            </td>
 
+          </tr>
+          ))}
         </tbody>
       </table>
     )
