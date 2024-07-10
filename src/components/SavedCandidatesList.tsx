@@ -1,5 +1,6 @@
 import React from "react";
 import Candidate from "../interfaces/Candidate.interface"
+import RejectButton from "./RejectButton";
 
 const SavedCandidatesList: React.FC = () => {
 
@@ -7,8 +8,8 @@ const potentialCandidates:Candidate[] = JSON.parse(localStorage.getItem("saved-c
 
 console.log("potential candidates", potentialCandidates)
 
-
     return (
+      <div className="table-container">
         <table className='table'>
         <thead>
           <tr>
@@ -23,15 +24,28 @@ console.log("potential candidates", potentialCandidates)
         </thead>
         <tbody>
         {potentialCandidates.map((candidate) => (
-          <tr key={candidate.id}>
+          <tr className="column-container"key={candidate.id}>
             <td className="column"> 
-              <img src={candidate.avatar_url} alt="avatar" width="50px" className="saved-avatar"/>
+              <img src={candidate.avatar_url} alt="avatar" width="90px" className="saved-avatar"/>
             </td>
+
+            <td className="saved-name"> 
+              {candidate.name} 
+              <i>
+              ({candidate.login})
+              </i>
+            </td>
+            <td className="truncate"> {candidate.location} </td>
+            <td className="truncate"> {candidate.email} </td>
+            <td className="truncate"> {candidate.company} </td>
+            <td className="truncate"> {candidate.bio} </td>
+            <td> <RejectButton/> </td>
 
           </tr>
           ))}
         </tbody>
       </table>
+      </div>
     )
 }
 

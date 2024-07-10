@@ -9,6 +9,6 @@ export default interface Candidate {
  company: string | null;
  url: string | null;
  html_url: string | null;
- login:  string | null;
+ login:  string;
  bio: string | null;
 }

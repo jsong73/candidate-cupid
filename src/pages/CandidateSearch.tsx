@@ -17,12 +17,14 @@ const CandidateSearch = () => {
       if(users.length > 0 ){
         const randomUser = users[Math.floor(Math.random() * users.length)]
         // console.log("random user selection:", randomUser)
-
+        
+        if(randomUser.login){
         const userDetail = await searchGithubUser(randomUser.login)
         // console.log("user detail", userDetail)
 
         setResults(userDetail)
       }
+    } 
     } catch(error){
       console.log("error getting results", error)
     }
