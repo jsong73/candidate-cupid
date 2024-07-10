@@ -39,7 +39,7 @@ console.log("potential candidates", potentialCandidates)
             <td className="truncate"> {candidate.email} </td>
             <td className="truncate"> {candidate.company} </td>
             <td className="truncate"> {candidate.bio} </td>
-            <td> <RejectButton/> </td>
+            <td> <RejectButton id={candidate.id}/> </td>
 
           </tr>
           ))}
