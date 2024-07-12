@@ -8,7 +8,7 @@ console.log("props", props)
 
     return(
         <div>
-        <button className="reject-btn" onClick={handleReject}> 
+        <button className="reject-btn"> 
             <div className="symbol"> - </div>
         </button>
     

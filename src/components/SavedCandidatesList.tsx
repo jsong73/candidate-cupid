@@ -1,8 +1,11 @@
 import React from "react";
 import Candidate from "../interfaces/Candidate.interface"
 import RejectButton from "./RejectButton";
+import { useCandidateContext } from "../context/CandidateContext" 
 
 const SavedCandidatesList: React.FC = () => {
+const {candidates} = useCandidateContext();
+console.log("candidates from context", candidates)
 
 const potentialCandidates:Candidate[] = JSON.parse(localStorage.getItem("saved-candidates") || "[]");
 

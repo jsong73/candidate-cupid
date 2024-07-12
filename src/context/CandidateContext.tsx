@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext, useContext }  from "react";
+import React, { useState, useEffect, createContext, useContext, ReactNode }  from "react";
 import Candidate from "../interfaces/Candidate.interface"
 
 interface CandidateContextType {
@@ -14,7 +14,11 @@ const CandidateContext = createContext<CandidateContextType>({
 
 export const useCandidateContext =() => useContext(CandidateContext)
 
-export const CandidateContextProvider: React.FC = ({ children }) => {
+interface CandidateProviderProps {
+    children: ReactNode;
+}
+
+export const CandidateProvider: React.FC<CandidateProviderProps> = ({ children } ) => {
 
     const [candidates, setCandidates] = useState<Candidate[]>([])
  
@@ -39,3 +43,4 @@ export const CandidateContextProvider: React.FC = ({ children }) => {
     )
 }
 
+ 
