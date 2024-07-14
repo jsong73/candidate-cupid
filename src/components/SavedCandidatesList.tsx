@@ -28,10 +28,13 @@ const {candidates} = useCandidateContext();
             </td>
 
             <td className="saved-name"> 
-              {candidate.name} 
-              <i>
-              ({candidate.login})
-              </i>
+              <a
+                href={candidate.html_url}
+                target="_blank"
+                rel="noopener noreferrer">
+
+                  {candidate.name} <i>({candidate.login})</i>
+              </a>
             </td>
             <td className="truncate"> {candidate.location} </td>
             <td className="truncate"> {candidate.email} </td>

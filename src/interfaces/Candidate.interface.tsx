@@ -8,7 +8,7 @@ export default interface Candidate {
  email: string | null;
  company: string | null;
  url: string | null;
- html_url: string | null;
+ html_url: string | undefined;
  login:  string;
  bio: string | null;
 }
