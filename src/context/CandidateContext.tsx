@@ -3,13 +3,13 @@ import Candidate from "../interfaces/Candidate.interface"
 
 interface CandidateContextType {
     candidates: Candidate[];
-    handleReject: (id:number) => void;
+    setCandidates: React.Dispatch<React.SetStateAction<Candidate[]>>;
 }
 
 
 const CandidateContext = createContext<CandidateContextType>({
     candidates: [],
-    handleReject: (id:number) => {}
+    setCandidates: () => {}
 })
 
 export const useCandidateContext =() => useContext(CandidateContext)
@@ -18,7 +18,7 @@ interface CandidateProviderProps {
     children: ReactNode;
 }
 
-export const CandidateProvider: React.FC<CandidateProviderProps> = ({ children } ) => {
+export const CandidateProvider: React.FC<CandidateProviderProps> = ({ children }) => {
 
     const [candidates, setCandidates] = useState<Candidate[]>([])
  
@@ -27,17 +27,8 @@ export const CandidateProvider: React.FC<CandidateProviderProps> = ({ children }
         setCandidates(savedCandidates)
     },[])
 
-    const handleReject = (id:number) => {
-        const updatedCandidates = candidates.filter((candidate) => candidate.id !== id)
-        console.log("updated candidates", updatedCandidates)
-        setCandidates(updatedCandidates)
-
-        localStorage.setItem("saved-candidates", JSON.stringify(updatedCandidates))
-
-    }
-
-    return(
-        <CandidateContext.Provider value={{candidates, handleReject}}>
+    return( 
+        <CandidateContext.Provider value={{candidates, setCandidates}}>
             {children}
         </CandidateContext.Provider>
     )

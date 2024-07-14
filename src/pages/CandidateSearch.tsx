@@ -4,15 +4,20 @@ import Candidate from '../interfaces/Candidate.interface';
 import ProfileCard from "../components/ProfileCard"
 import AcceptButton from '../components/AcceptButton';
 import RejectButton from '../components/RejectButton';
+import { useCandidateContext } from "../context/CandidateContext"
 
 const CandidateSearch = () => {
   const [ results, setResults] = useState<Candidate | null>(null);
+  const [currentIndex, setCurrentIndex]= useState<number>(0);
+  const isSearchPage:boolean = true;
+
+  const { candidates, setCandidates } = useCandidateContext();
 
   
   const searchAllUsers = async () => {
     try{
       const users: Candidate[]= await searchGithub()
-      // console.log("users:", users)
+      console.log("users:", users)
 
       if(users.length > 0 ){
         const randomUser = users[Math.floor(Math.random() * users.length)]
@@ -23,6 +28,7 @@ const CandidateSearch = () => {
         // console.log("user detail", userDetail)
 
         setResults(userDetail)
+        console.log("results", results)
       }
     } 
     } catch(error){
@@ -30,37 +36,29 @@ const CandidateSearch = () => {
     }
   }
 
-  const searchOneUser = async ( username: string ) => {
-    try{
-      const res: Candidate= await searchGithubUser(username)
-      console.log("res:", res)
-    } catch(error) {
-      console.log("error getting results", error)
-    }
-  }
-
   const saveCandidate =  async () => {
-    if(results) {
-      const candidates= localStorage.getItem("saved-candidates")
-
-      let savedCandidates = [];
-
-      if(candidates) {
-        savedCandidates = JSON.parse(candidates)
-      }
-
-      savedCandidates.push(results)
-
-      localStorage.setItem("saved-candidates", JSON.stringify(savedCandidates))
-
-      window.location.reload();
-
-      console.log("candidates in local storage", candidates)
-      console.log("saved candidate:", results)
-
+    if (results) {
+      const potentialCandidates = [...candidates, results];
+      setCandidates(potentialCandidates)
+      localStorage.setItem("saved-candidates", JSON.stringify(potentialCandidates));
+    
+      console.log("saved candidate:", potentialCandidates)
+      handleNext();
     }
-
   }
+
+  const handleNext = async () => {
+    if(results) {
+      const users: Candidate[] = await searchGithub()   
+      const nextUser = (currentIndex + 1) % users.length;
+      console.log("next user:", nextUser)
+      const nextUserDetail = await searchGithubUser(users[nextUser].login);
+      console.log("next user detail:", nextUserDetail)
+      setResults(nextUserDetail);
+      setCurrentIndex(nextUser);
+    }
+  }
+
 
   useEffect (() => {
     searchAllUsers();
@@ -74,8 +72,8 @@ const CandidateSearch = () => {
           <>
           <ProfileCard candidate={results}/>
           <div className='btn-container'>
-          <RejectButton />
-          <AcceptButton onClick={saveCandidate} />
+          <RejectButton id={results.id} isSearchPage={isSearchPage} handleNext={handleNext}/>
+          <AcceptButton onClick={saveCandidate}/>
           </div>
           </>
       ):(

@@ -7,10 +7,6 @@ const SavedCandidatesList: React.FC = () => {
 const {candidates} = useCandidateContext();
 console.log("candidates from context", candidates)
 
-const potentialCandidates:Candidate[] = JSON.parse(localStorage.getItem("saved-candidates") || "[]");
-
-console.log("potential candidates", potentialCandidates)
-
     return (
       <div className="table-container">
         <table className='table'>
@@ -26,7 +22,7 @@ console.log("potential candidates", potentialCandidates)
           </tr>
         </thead>
         <tbody>
-        {potentialCandidates.map((candidate) => (
+        {candidates.map((candidate) => (
           <tr className="column-container"key={candidate.id}>
             <td className="column"> 
               <img src={candidate.avatar_url} alt="avatar" width="90px" className="saved-avatar"/>
