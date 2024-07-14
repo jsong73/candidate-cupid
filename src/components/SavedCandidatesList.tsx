@@ -1,11 +1,10 @@
 import React from "react";
-import Candidate from "../interfaces/Candidate.interface"
 import RejectButton from "./RejectButton";
 import { useCandidateContext } from "../context/CandidateContext" 
 
 const SavedCandidatesList: React.FC = () => {
 const {candidates} = useCandidateContext();
-console.log("candidates from context", candidates)
+// console.log("candidates from context", candidates)
 
     return (
       <div className="table-container">
@@ -38,7 +37,7 @@ console.log("candidates from context", candidates)
             <td className="truncate"> {candidate.email} </td>
             <td className="truncate"> {candidate.company} </td>
             <td className="truncate"> {candidate.bio} </td>
-            <td> <RejectButton id={candidate.id}/> </td>
+            <td> <RejectButton id={candidate.id} isSearchPage={false} handleNext={() => {}}/> </td>
 
           </tr>
           ))}

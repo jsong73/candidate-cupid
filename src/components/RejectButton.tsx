@@ -9,18 +9,18 @@ interface RejectButtonProps{
 }
 
 const RejectButton: React.FC<RejectButtonProps> = ({id, isSearchPage, handleNext}) => {
-console.log("candidate id" , id)
-console.log("is search page?", isSearchPage)
+// console.log("candidate id" , id)
+// console.log("is search page?", isSearchPage)
 
 const { candidates, setCandidates } = useCandidateContext();
 
 const handleReject = (id: number | null) => {
     if(isSearchPage){
         handleNext()
-    } else{
-    const updatedCandidates = candidates.filter((candidate) => candidate.id !== id);
-    setCandidates(updatedCandidates);
-    localStorage.setItem("saved-candidates", JSON.stringify(updatedCandidates));
+    } else {
+        const updatedCandidates = candidates.filter((candidate) => candidate.id !== id);
+        setCandidates(updatedCandidates);
+        localStorage.setItem("saved-candidates", JSON.stringify(updatedCandidates));
     }
 };
 

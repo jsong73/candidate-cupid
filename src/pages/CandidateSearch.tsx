@@ -17,7 +17,7 @@ const CandidateSearch = () => {
   const searchAllUsers = async () => {
     try{
       const users: Candidate[]= await searchGithub()
-      console.log("users:", users)
+      // console.log("users:", users)
 
       if(users.length > 0 ){
         const randomUser = users[Math.floor(Math.random() * users.length)]
@@ -28,7 +28,7 @@ const CandidateSearch = () => {
         // console.log("user detail", userDetail)
 
         setResults(userDetail)
-        console.log("results", results)
+        // console.log("results", results)
       }
     } 
     } catch(error){
@@ -42,7 +42,7 @@ const CandidateSearch = () => {
       setCandidates(potentialCandidates)
       localStorage.setItem("saved-candidates", JSON.stringify(potentialCandidates));
     
-      console.log("saved candidate:", potentialCandidates)
+      // console.log("saved candidate:", potentialCandidates)
       handleNext();
     }
   }
@@ -50,19 +50,18 @@ const CandidateSearch = () => {
   const handleNext = async () => {
     if(results) {
       const users: Candidate[] = await searchGithub()   
-      const nextUser = (currentIndex + 1) % users.length;
-      console.log("next user:", nextUser)
-      const nextUserDetail = await searchGithubUser(users[nextUser].login);
-      console.log("next user detail:", nextUserDetail)
+      const nextUserIndex = (currentIndex + 1) % users.length;
+      // console.log("next user:", nextUserIndex)
+      const nextUserDetail = await searchGithubUser(users[nextUserIndex].login);
+      // console.log("next user detail:", nextUserDetail)
       setResults(nextUserDetail);
-      setCurrentIndex(nextUser);
+      setCurrentIndex(nextUserIndex);
     }
   }
 
 
   useEffect (() => {
     searchAllUsers();
-    // searchOneUser(user);
   }, [])
 
   return (

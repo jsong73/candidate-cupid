@@ -5,9 +5,6 @@ interface ButtonProps {
 }
 
 const AcceptButton: React.FC<ButtonProps> = ({ onClick }) => {
-    // const [saved, setSaved ] = useState([]);
-
-
 
 return(
     <div>
