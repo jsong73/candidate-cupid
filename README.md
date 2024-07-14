@@ -1,30 +1,17 @@
-# React + TypeScript + Vite
+# Candidate Cupid
+Candidate Cupid is a React application designed to help manage candidates for a recruitment process. It allows users to search GitHub for potential candidates, view their profiles, and save candidates of interest. The app utilizes TypeScript for type safety and React hooks for state management.
+  
+## Technology  
+* React
+* TypeScript
+* React Hooks
+* REST API (for GitHub integration)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Features  
+* Search GitHub for candidates
+* View candidate profiles
+* Save candidates and their profile details to local storage
+* Reject candidates and manage saved candidates
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+![image](https://github.com/user-attachments/assets/9c7daa1d-f2b5-4da2-9316-76eb5c9d87dc)  
+![image](https://github.com/user-attachments/assets/72b0496a-b4f8-4e16-9436-4e7f55f21583)  
